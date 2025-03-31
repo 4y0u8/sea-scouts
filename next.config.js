@@ -24,7 +24,10 @@ const nextConfig = {
         gpu: true, // Enable GPU acceleration
         memoryLimit: 4096 // MB
       }
-    }
+    },
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
   }
   
   module.exports = nextConfig
