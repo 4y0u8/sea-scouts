@@ -1,0 +1,63 @@
+/* styles/globals.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+  color: #333;
+  direction: rtl; /* For Arabic text direction */
+}
+
+.dark {
+  background-color: #2d2d2d;
+  color: white;
+}
+
+.hero-section {
+  background-color: #1e3a8a; /* Sea blue */
+  color: white;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+}
+
+.about-section, .gallery-section {
+  padding: 50px;
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.gallery img {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.footer {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.dark-mode-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #facc15;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}

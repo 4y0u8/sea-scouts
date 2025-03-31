@@ -1,0 +1,8 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL") // This will use the DATABASE_URL from your .env file
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
