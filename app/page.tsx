@@ -1,13 +1,9 @@
 "use client";
-import React, { useState } from 'react';
-import styled, { keyframes, css } from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FaAnchor, FaShip, FaWater, FaUsers, FaRegCompass, 
-  FaCalendarAlt, FaPhone, FaMapMarkerAlt, FaSearch
-} from 'react-icons/fa';
-import { GiSailboat, GiWaveSurfer, GiFishingBoat, GiShipWheel } from 'react-icons/gi';
-import { MdOutlineHistory, MdGroups, MdEmojiEvents } from 'react-icons/md';
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { motion } from 'framer-motion';
+import { FaShip, FaCalendarAlt } from 'react-icons/fa';
+import { GiSailboat, GiFishingBoat, GiShipWheel } from 'react-icons/gi';
 
 // ---------------------
 // Theme & Animations
@@ -58,17 +54,6 @@ const theme = {
     xxl: '4rem'
   }
 };
-
-const waveAnimation = keyframes`
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
-`;
 
 const floatAnimation = keyframes`
   0% { transform: translateY(0px); }
@@ -428,6 +413,18 @@ const ActivityCard = styled(motion.div)`
   transition: all 0.3s ease;
   position: relative;
 `;
+const ActivityDate = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${theme.spacing.xs};
+  color: ${theme.colors.accent};
+  font-weight: ${theme.fonts.weights.bold};
+  margin-bottom: ${theme.spacing.sm};
+  
+  svg {
+    font-size: 1.2rem;
+  }
+`;
 
 const ActivityImage = styled.div`
   height: 200px;
@@ -444,15 +441,6 @@ const ActivityTitle = styled.h3`
   font-size: 1.5rem;
   font-weight: ${theme.fonts.weights.bold};
   color: ${theme.colors.darkBlue};
-  margin-bottom: ${theme.spacing.sm};
-`;
-
-const ActivityDate = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${theme.spacing.xs};
-  color: ${theme.colors.accent};
-  font-weight: ${theme.fonts.weights.bold};
   margin-bottom: ${theme.spacing.sm};
 `;
 
@@ -555,97 +543,6 @@ const GalleryPreviewButton = styled.a`
     background: white;
     color: ${theme.colors.primary};
   }
-`;
-
-// ---------------------
-// Testimonials Section
-// ---------------------
-const TestimonialsSection = styled(Section)`
-  background: url('/images/wave-bg.jpg') center/cover no-repeat;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(26, 54, 93, 0.85);
-  }
-`;
-
-const TestimonialsContainer = styled.div`
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-
-const TestimonialCard = styled(motion.div)`
-  background: ${theme.colors.white};
-  border-radius: 15px;
-  padding: ${theme.spacing.lg};
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  margin: 0 ${theme.spacing.sm};
-  position: relative;
-  border-left: 4px solid ${theme.colors.accent};
-`;
-
-const TestimonialText = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: ${theme.colors.text};
-  margin-bottom: ${theme.spacing.md};
-  font-style: italic;
-  position: relative;
-`;
-
-const TestimonialAuthor = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-const AuthorImage = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-left: ${theme.spacing.md};
-  border: 3px solid ${theme.colors.lightBlue};
-`;
-
-const AuthorInfo = styled.div`
-  text-align: right;
-`;
-
-const AuthorName = styled.h4`
-  font-size: 1.3rem;
-  font-weight: ${theme.fonts.weights.bold};
-  color: ${theme.colors.darkBlue};
-  margin-bottom: ${theme.spacing.xs};
-`;
-
-const AuthorRole = styled.p`
-  font-size: 1.1rem;
-  color: ${theme.colors.primary};
-`;
-
-const FloatingShips = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-`;
-
-const FloatingShip = styled(FaShip)`
-  position: absolute;
-  font-size: 10rem;
-  color: rgba(255, 255, 255, 0.05);
-  animation: ${floatAnimation} 8s ease-in-out infinite;
 `;
 
 // ---------------------

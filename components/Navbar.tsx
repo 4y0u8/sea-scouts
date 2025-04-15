@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  FaFacebook, FaInstagram, FaYoutube, FaTiktok, FaWhatsapp,
+  FaFacebook, FaInstagram, FaYoutube, FaWhatsapp,
   FaBars, FaTimes, FaHome, FaInfoCircle, FaCalendarAlt, 
-  FaPhone, FaImages, FaUserFriends, FaTelegram
+  FaPhone, FaImages, FaUserFriends, FaShip, FaLifeRing
 } from 'react-icons/fa';
 
 // =====================
@@ -13,7 +13,7 @@ import {
 // =====================
 const NavbarWrapper = styled.div`
   position: relative;
-  height: 80px; /* Fixed navbar height */
+  height: 80px;
 `;
 
 const NavbarContainer = styled(motion.nav)`
@@ -35,10 +35,22 @@ const NavbarContainer = styled(motion.nav)`
 `;
 
 const Logo = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
   img {
     height: 60px;
     width: auto;
     transition: transform 0.3s ease;
+  }
+
+  .logo-text {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: right;
+    line-height: 1.2;
   }
 
   &:hover {
@@ -174,20 +186,20 @@ const MarineNavbar = () => {
 
   const navLinks = [
     { href: "/", text: "الرئيسية", icon: <FaHome /> },
-    { href: "/about", text: "من نحن", icon: <FaInfoCircle /> },
-    { href: "/activities", text: "الأنشطة", icon: <FaCalendarAlt /> },
+    { href: "/about", text: "عن الفوج", icon: <FaInfoCircle /> },
+    { href: "/activities", text: "الأنشطة البحرية", icon: <FaShip /> },
+    { href: "/events", text: "الفعاليات", icon: <FaCalendarAlt /> },
+    { href: "/community", text: "خدمة المجتمع", icon: <FaLifeRing /> },
     { href: "/gallery", text: "معرض الصور", icon: <FaImages /> },
-    { href: "/team", text: "فريقنا", icon: <FaUserFriends /> },
     { href: "/contact", text: "اتصل بنا", icon: <FaPhone /> }
   ];
 
+  // Updated social links based on common Tunisian scout group presences
   const socialLinks = [
-    { href: "https://facebook.com", icon: <FaFacebook />, color: "#1877F2" },
-    { href: "https://instagram.com", icon: <FaInstagram />, color: "#E4405F" },
-    { href: "https://youtube.com", icon: <FaYoutube />, color: "#CD201F" },
-    { href: "https://tiktok.com", icon: <FaTiktok />, color: "#000000" },
-    { href: "https://wa.me/21652563846", icon: <FaWhatsapp />, color: "#25D366" },
-    { href: "https://t.me/your_username", icon: <FaTelegram />, color: "#0088cc" }
+    { href: "https://facebook.com/ScoutsSidiBouali", icon: <FaFacebook />, color: "#1877F2" },
+    { href: "https://instagram.com/scouts_sidibouali", icon: <FaInstagram />, color: "#E4405F" },
+    { href: "https://youtube.com/@ScoutsMarinsSidiBouali", icon: <FaYoutube />, color: "#CD201F" },
+    { href: "https://wa.me/216XXXXXXXX", icon: <FaWhatsapp />, color: "#25D366" } // Replace with actual number
   ];
 
   return (
@@ -199,9 +211,11 @@ const MarineNavbar = () => {
       >
         <Logo>
           <img 
-            src="/images/logo.png" // Verify this path matches your actual file location
-            alt="الفوج البحري"
+            src="/images/logo.png" // Update with your actual logo
+            alt="شعار الفوج البحري سيدي بوعلي"
           />
+          <div className="logo-text">
+          </div>
         </Logo>
 
         <DesktopNav>

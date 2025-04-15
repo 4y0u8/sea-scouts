@@ -1317,7 +1317,7 @@ const timelineEvents: TimelineEvent[] = [
 
 const teamMembers: TeamMember[] = [
   {
-    name: "الكابتن أحمد البحري",
+    name: "الكابتن حازم الشايب",
     role: "المدير العام",
     image: "/images/team1.jpg",
     bio: "خبرة 25 عامًا في المجال البحري، مدرب معتمد من الاتحاد الدولي للقوارب الشراعية",

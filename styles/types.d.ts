@@ -98,12 +98,13 @@ declare module 'styled-components' {
     };
     
     shadows: {
-      small: string;
-      medium: string;
-      large: string;
-      inset: string;
-      text: string;
-    };
+    small: string;
+    medium: string;
+    large: string;
+    inset: string;
+    text: string;
+    card: string;
+  };
     
     borders: {
       thin: string;
