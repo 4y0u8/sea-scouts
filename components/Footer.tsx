@@ -1,8 +1,9 @@
 "use client";
 import React from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
 import { 
-  FaFacebook, FaInstagram, FaYoutube, FaTiktok, FaWhatsapp,
+  FaFacebook, FaInstagram, FaYoutube, FaWhatsapp,
   FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock
 } from 'react-icons/fa';
 import { 
@@ -201,10 +202,8 @@ const MarineFooter = () => {
         <FooterSection>
           <h3><GiSailboat /> الفوج البحري</h3>
           <FooterLogo>
-            <img 
-              src="/images/Logo.png" // Use white version if available
-              alt="الفوج البحري بسيدي بوعلي"
-            />
+          <Image src="/logo.png" alt="Logo" width={100} height={100} />
+
             <p>
               فوج بحري يهدف إلى تنمية مهارات الشباب معتمدا الاختصاص البحري
               من خلال برامج متكاملة تجمع بين مختلف الج.

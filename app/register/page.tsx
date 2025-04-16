@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaUser, FaPhone, FaCalendarAlt, FaAnchor, FaShip } from 'react-icons/fa';
+import { FaAnchor, FaShip } from 'react-icons/fa';
 import styled from 'styled-components';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';

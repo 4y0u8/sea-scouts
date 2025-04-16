@@ -1,27 +1,23 @@
-'use client';
-
-import React, { createContext, useState, ReactNode } from 'react';
-
-// Define the type for the context value
-interface StateContextType {
-  state: any; // Replace 'any' with a more specific type if needed
-  setState: React.Dispatch<React.SetStateAction<any>>;
-}
-
-// Create the context with a default value of 'null'
-const StateContext = createContext<StateContextType | null>(null);
+import React, { ReactNode } from 'react';
 
 interface ClientWrapperProps {
   children: ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
-const ClientWrapper: React.FC<ClientWrapperProps> = ({ children }) => {
-  const [state, setState] = useState<any>(null); // Adjust 'any' to your required state type
-
+const ClientWrapper: React.FC<ClientWrapperProps> = ({ 
+  children, 
+  className, 
+  style 
+}) => {
   return (
-    <StateContext.Provider value={{ state, setState }}>
+    <div 
+      className={className}
+      style={style}
+    >
       {children}
-    </StateContext.Provider>
+    </div>
   );
 };
 

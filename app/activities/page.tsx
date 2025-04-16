@@ -15,7 +15,6 @@ import {
   GiSailboat,
   GiFishingBoat,
   GiShipWheel,
-  GiAnchor
 } from 'react-icons/gi';
 
 // =====================

@@ -1,11 +1,16 @@
 'use client';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaPaperPlane } from 'react-icons/fa';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
-// Define the theme for consistent styling
+interface Message {
+  username: string;
+  text: string;
+  timestamp: string;
+}
+
 const theme = {
   colors: {
     primary: '#2563eb',
@@ -15,7 +20,6 @@ const theme = {
   },
 };
 
-// Container for the main content
 const Container = styled.main`
   max-width: 800px;
   margin: 0 auto;
@@ -53,20 +57,19 @@ const InputContainer = styled.div`
   align-items: center;
 `;
 
-const UsernameInput = styled.input`
+const InputField = styled.input`
   padding: 0.5rem;
   border: 1px solid ${theme.colors.primary};
   border-radius: 10px;
   margin-right: 0.5rem;
+`;
+
+const UsernameInput = styled(InputField)`
   flex: 1;
 `;
 
-const MessageInput = styled.input`
+const MessageInput = styled(InputField)`
   flex: 2;
-  padding: 0.5rem;
-  border: 1px solid ${theme.colors.primary};
-  border-radius: 10px;
-  margin-right: 0.5rem;
 `;
 
 const SendButton = styled(motion.button)`
@@ -79,7 +82,7 @@ const SendButton = styled(motion.button)`
   transition: background 0.3s;
 
   &:hover {
-    background: darken(${theme.colors.primary}, 10%);
+    background: #1d4ed8;
   }
 `;
 
@@ -90,50 +93,60 @@ const TypingIndicator = styled.div`
 `;
 
 const GroupChatPage: React.FC = () => {
-  const [messages, setMessages] = useState<{ username: string; text: string; timestamp: string }[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [username, setUsername] = useState('');
   const [typing, setTyping] = useState(false);
-  const socket = io(); // Connect to the Socket.IO server
+  const [socket, setSocket] = useState<Socket | null>(null);
   const messageListRef = useRef<HTMLDivElement>(null);
 
+  const scrollToBottom = useCallback(() => {
+    if (messageListRef.current) {
+      messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
+    }
+  }, []);
+
   useEffect(() => {
-    // Listen for incoming messages
-    socket.on('message', (message: { username: string; text: string; timestamp: string }) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
+    const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001');
+    setSocket(newSocket);
+
+    newSocket.on('message', (message: Message) => {
+      setMessages((prev) => [...prev, message]);
       scrollToBottom();
     });
 
-    // Listen for typing indicator
-    socket.on('typing', (username: string) => {
+    newSocket.on('typing', () => {
       setTyping(true);
-      setTimeout(() => setTyping(false), 1000); // Hide typing indicator after 1 second
+      const timer = setTimeout(() => setTyping(false), 1000);
+      return () => clearTimeout(timer);
     });
 
-    // Clean up the socket connection on component unmount
     return () => {
-      socket.disconnect();
+      newSocket.disconnect();
     };
-  }, [socket]);
+  }, [scrollToBottom]);
 
   const handleSendMessage = () => {
-    if (inputValue.trim() && username.trim()) {
-      const timestamp = new Date().toLocaleTimeString(); // Get current time
-      const message = { username, text: inputValue, timestamp };
-      socket.emit('sendMessage', message); // Send message to the server
-      setInputValue(''); // Clear the input field
+    if (inputValue.trim() && username.trim() && socket) {
+      const message: Message = {
+        username,
+        text: inputValue,
+        timestamp: new Date().toLocaleTimeString(),
+      };
+      socket.emit('sendMessage', message);
+      setInputValue('');
     }
   };
 
-  const handleTyping = () => {
-    if (username.trim()) {
-      socket.emit('typing', username); // Notify others that the user is typing
+  const handleTyping = useCallback(() => {
+    if (username.trim() && socket) {
+      socket.emit('typing', username);
     }
-  };
+  }, [username, socket]);
 
-  const scrollToBottom = () => {
-    if (messageListRef.current) {
-      messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
     }
   };
 
@@ -142,11 +155,12 @@ const GroupChatPage: React.FC = () => {
       <ChatTitle>دردشة المجموعة</ChatTitle>
       <MessageList ref={messageListRef}>
         {messages.map((message, index) => (
-          <Message key={index}>
-            <strong>{message.username}:</strong> {message.text} <span style={{ fontSize: '0.8em', color: '#888' }}>({message.timestamp})</span>
+          <Message key={`${message.timestamp}-${index}`}>
+            <strong>{message.username}:</strong> {message.text}{' '}
+            <span style={{ fontSize: '0.8em', color: '#888' }}>({message.timestamp})</span>
           </Message>
         ))}
-        {typing && <TypingIndicator>Someone is typing...</TypingIndicator>}
+        {typing && <TypingIndicator>...يكتب أحدهم</TypingIndicator>}
       </MessageList>
       <InputContainer>
         <UsernameInput
@@ -160,11 +174,16 @@ const GroupChatPage: React.FC = () => {
           value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value);
-            handleTyping(); // Trigger typing indicator
+            handleTyping();
           }}
+          onKeyPress={handleKeyPress}
           placeholder="اكتب رسالتك هنا..."
         />
-        <SendButton onClick={handleSendMessage} whileHover={{ scale: 1.05 }}>
+        <SendButton 
+          onClick={handleSendMessage} 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           <FaPaperPlane />
         </SendButton>
       </InputContainer>

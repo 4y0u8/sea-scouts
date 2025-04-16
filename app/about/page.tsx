@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import Image from 'next/image';
+import styled, { keyframes} from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  FaAnchor, FaShip, FaUsers, FaRegCompass, FaCalendarAlt, FaPhone, 
-  FaTwitter, FaFacebook, FaInstagram, FaEnvelope 
+  FaAnchor, FaShip, FaUsers, FaRegCompass,
+  FaTwitter, FaFacebook, FaInstagram, 
 } from 'react-icons/fa';
 import { 
   GiSailboat, GiWaveSurfer, GiFishingBoat, GiShipWheel 
@@ -111,10 +112,6 @@ const floatAnimation = keyframes`
   100% { transform: translateY(0px) rotate(0deg); }
 `;
 
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
 
 // ---------------------
 // Base Components
@@ -1451,9 +1448,7 @@ const AboutUsPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <img 
-              src="/images/about.jpg" 
-              alt="الفوج البحري" 
+            <Image src="/logo.png" alt="Logo" width={100} height={100} 
               style={{ 
                 width: '100%', 
                 height: '100%', 

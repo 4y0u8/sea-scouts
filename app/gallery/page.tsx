@@ -13,7 +13,7 @@ import {
   FaUsers,
   FaCalendarAlt
 } from 'react-icons/fa';
-import { GiSailboat, GiAnchor } from 'react-icons/gi';
+import { GiSailboat } from 'react-icons/gi';
 
 // =====================
 // Theme & Types

@@ -1,11 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FaFacebook, FaInstagram, FaYoutube, FaWhatsapp,
   FaBars, FaTimes, FaHome, FaInfoCircle, FaCalendarAlt, 
-  FaPhone, FaImages, FaUserFriends, FaShip, FaLifeRing
+  FaPhone, FaImages, FaShip, FaLifeRing
 } from 'react-icons/fa';
 
 // =====================
@@ -210,10 +211,8 @@ const MarineNavbar = () => {
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         <Logo>
-          <img 
-            src="/images/logo.png" // Update with your actual logo
-            alt="شعار الفوج البحري سيدي بوعلي"
-          />
+        <Image src="/logo.png" alt="Logo" width={100} height={100} />
+
           <div className="logo-text">
           </div>
         </Logo>
