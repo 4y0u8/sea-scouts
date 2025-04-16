@@ -203,7 +203,7 @@ const MarineFooter = () => {
           <h3><GiSailboat /> الفوج البحري</h3>
           <FooterLogo>
           <Image
-            src="/images/logo.png"
+            src="/images/Logo.png"
             alt="Scout Logo"
             width={120}  // Required
             height={40}  // Required
