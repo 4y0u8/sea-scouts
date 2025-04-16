@@ -276,7 +276,7 @@ const MarineFooter = () => {
 
       <Copyright>
         <GiSailboat />
-        <span>جميع الحقوق محفوظة © الفوج البحري بسيدي بوعلي {new Date().getFullYear()}</span>
+        <span>جميع الحقوق محفوظة © الفوج البحري سيدي بوعلي {new Date().getFullYear()}</span>
       </Copyright>
     </FooterWrapper>
   );

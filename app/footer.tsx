@@ -134,7 +134,7 @@ const Footer = () => {
       </FooterContent>
 
       <Copyright>
-        © {new Date().getFullYear()} الفوج البحري بسيدي بوعلي. جميع الحقوق محفوظة
+        © {new Date().getFullYear()} الفوج البحري سيدي بوعلي. جميع الحقوق محفوظة
       </Copyright>
     </FooterContainer>
   );
