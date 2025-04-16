@@ -211,7 +211,13 @@ const MarineNavbar = () => {
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         <Logo>
-        <Image src="/images/logo.png" alt="Logo" width={100} height={100} />
+        <Image 
+  src="/images/logo.png"  // Path from public folder
+  alt="Scout Logo"
+  width={120}  // Required
+  height={40}  // Required
+  priority     // Optional for above-the-fold logos
+/>
 
           <div className="logo-text">
           </div>
