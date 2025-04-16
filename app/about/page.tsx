@@ -1448,14 +1448,12 @@ const AboutUsPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Image src="/logo.png" alt="Logo" width={100} height={100} 
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover',
-                objectPosition: 'center'
-              }} 
-              loading="lazy"
+            <Image
+              src="/images/logo.png"
+              alt="Scout Logo"
+              width={120}  // Required
+              height={40}  // Required
+              priority     // For above-the-fold logos
             />
           </AboutImage>
           

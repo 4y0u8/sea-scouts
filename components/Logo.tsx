@@ -14,13 +14,13 @@ const LogoContainer = styled.div`
 const Logo = () => {
   return (
     <LogoContainer>
-      <Image 
-        src="/images/logo.png" // Path to your logo image in the public directory
-        alt="Logo"
-        width={100} // Adjust width as needed
-        height={80} // Adjust height as needed
-        style={{ objectFit: 'contain' }} // Ensure the logo maintains its aspect ratio
-      />
+              <Image
+                src="/images/logo.png"
+                alt="Scout Logo"
+                width={120}  // Required
+                height={40}  // Required
+                priority     // For above-the-fold logos
+              />
     </LogoContainer>
   );
 };

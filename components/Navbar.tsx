@@ -212,7 +212,7 @@ const MarineNavbar = () => {
       >
         <Logo>
         <Image 
-  src="/images/logo.png"  // Path from public folder
+  src="/images/Logo.png"  // Path from public folder
   alt="Scout Logo"
   width={120}  // Required
   height={40}  // Required

@@ -202,7 +202,13 @@ const MarineFooter = () => {
         <FooterSection>
           <h3><GiSailboat /> الفوج البحري</h3>
           <FooterLogo>
-          <Image src="/logo.png" alt="Logo" width={100} height={100} />
+          <Image
+            src="/images/logo.png"
+            alt="Scout Logo"
+            width={120}  // Required
+            height={40}  // Required
+            priority     // For above-the-fold logos
+          />
 
             <p>
               فوج بحري يهدف إلى تنمية مهارات الشباب معتمدا الاختصاص البحري
