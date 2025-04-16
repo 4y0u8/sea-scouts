@@ -81,8 +81,8 @@ export const theme: DefaultTheme = {
     large: '0 10px 15px rgba(0,0,0,0.1)', // Added to match type definition
     inset: 'inset 0 2px 4px rgba(0,0,0,0.06)', // Added to match type definition
     card: '0 4px 8px rgba(0, 0, 0, 0.2)',
-    text: '0 2px 4px rgba(0,0,0,0.1)' // Added to match type definition
-    
+    text: '0 2px 4px rgba(0,0,0,0.1)', // Added to match type definition
+    hover: '0 15px 30px rgba(0,0,0,0.15)'
   },
   borders: {
     thin: '1px solid', // Added to match type definition

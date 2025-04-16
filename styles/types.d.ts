@@ -104,6 +104,8 @@ declare module 'styled-components' {
     inset: string;
     text: string;
     card: string;
+    hover: string;
+
   };
     
     borders: {
