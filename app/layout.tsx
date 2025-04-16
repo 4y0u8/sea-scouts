@@ -86,13 +86,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               {!mounted ? (
                 <LoadingOverlay>
                   <LoadingImage>
-                    <Image
-                      src="/images/logo.png"
-                      alt="Loading"
-                      width={150}
-                      height={150}
-                      priority
-                    />
+                  <Image 
+                      src="/images/logo.png"  // Path from public folder
+                      alt="Scout Logo"
+                      width={120}  // Required
+                      height={40}  // Required
+                      priority     // Optional for above-the-fold logos
+                  />
                   </LoadingImage>
                 </LoadingOverlay>
               ) : (
