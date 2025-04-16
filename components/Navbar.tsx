@@ -211,7 +211,7 @@ const MarineNavbar = () => {
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         <Logo>
-        <Image src="/logo.png" alt="Logo" width={100} height={100} />
+        <Image src="/images/logo.png" alt="Logo" width={100} height={100} />
 
           <div className="logo-text">
           </div>
